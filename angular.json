@@ -29,8 +29,10 @@
             ],
             "styles": [
               "src/styles.css"
+             
             ],
             "scripts": []
+            
           },
           "configurations": {
             "production": {
@@ -124,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "todo-app-crud"
+  "defaultProject": "todo-app-crud",
+  "cli": {
+    "analytics": false
+  }
 }

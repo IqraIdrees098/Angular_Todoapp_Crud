@@ -1,0 +1,33 @@
+
+    <h1><span class="heading-style">TODO</span></h1>
+
+    <div class="input_div">
+        <input type="text" class="input" placeholder="TODO"   [(ngModel)]="taskName">
+        <button class="addButton" (click) = "CreateTask()" [disabled]="!taskName" >Add</button>
+    </div>
+
+    <div class="container">         
+        
+     <div class="item" *ngFor= "let item of task">
+        <div *ngIf= "!item.isedit; else elseBlock "> 
+        <span class="item_input"> {{item.name}} </span>
+           <button  class="editButton" (click)="EditTask(item)">Edit</button>
+           <button  class="removeButton" (click)="DeleteTask(item.id)">Remove</button>
+       </div>  
+    </div>
+    
+    </div>
+
+    <ng-template #elseBlock>      
+        <div>      
+        <span class="item_input"> <input type="text" [(ngModel)] = "item.edittask"> </span>
+          <button (click)="item.isedit = false" class="editButton">Cancel</button>
+          <button (click)= "UpdateTask(item)"  class="removeButton">Update</button>
+        </div>       
+     </ng-template>
+
+
+
+
+
+
