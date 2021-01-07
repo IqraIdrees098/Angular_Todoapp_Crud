@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from './service/crud.service';
 
 
-interface tasktype{
-  name : any;
+interface Tasktype{
+  id? : string;
+  name : string;
+  isedit:boolean;
+  edittask:boolean;
 }
 
 @Component({
@@ -17,31 +20,28 @@ export class TaskComponent implements OnInit {
 
   constructor(public crudservice:CrudService) { }
 
- public data:tasktype[]=[];
-
+ public data:Tasktype[]=[];
 
   task:any;
   taskName: any;
   message:any;
 
-
   ngOnInit()  {
 
     this.crudservice.get_Alltask().subscribe( data => {
     // console.log(data);
-     this.task = data.map( e => {
-    //  let  data:any= e.payload.doc.data();
+     this.task = data.map( (e : any) => {
         return{
+          ...e.payload.doc.data(),
           id: e.payload.doc.id,
-          isedit: false,
-     //    name: data.name,
-          name: e.payload.doc.data()['name']
-        };
+          isedit: false
+        } as Tasktype;
       })
       console.log(this.task)
   }) 
  
   }
+  
   
   CreateTask(){
     let Record = {};
