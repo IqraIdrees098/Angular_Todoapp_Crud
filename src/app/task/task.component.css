@@ -68,8 +68,20 @@ h1{
      outline: none;
      color: #fff;
      border: none;
-     width: 350px;
+     width: 420px !important;
      font-size: 1.4rem;
+}
+
+.item_input_edit{
+    background: none;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 1.3rem;
+}
+
+.item-name{
+    margin-right: 7rem !important;
 }
 
 .editButton{

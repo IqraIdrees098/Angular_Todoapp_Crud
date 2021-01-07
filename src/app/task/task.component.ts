@@ -19,11 +19,13 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
 
     this.crudservice.get_Alltask().subscribe( data => {
+      console.log(data);
       this.task = data.map( e => {
+        let data:any = e.payload.doc.data();
         return{
           id: e.payload.doc.id,
           isedit: false,
-          name: e.payload.doc.data()['name']
+          name: data.name,
         };
       })
       console.log(this.task);
@@ -38,7 +40,7 @@ export class TaskComponent implements OnInit {
     this.crudservice.create_Task(Record).then(res =>{
       this.taskName = "";
       console.log(res);
-      this.message = alert("Employee Data Save");
+      this.message = alert("Data Save");
     }).catch(error => {
       console.log(error);
       } 

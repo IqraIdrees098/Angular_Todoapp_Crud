@@ -2,31 +2,32 @@
     <h1><span class="heading-style">TODO</span></h1>
 
     <div class="input_div">
-        <input type="text" class="input" placeholder="TODO"   [(ngModel)]="taskName">
+        <input type="text" class="input" placeholder="Your task here"   [(ngModel)]="taskName">
         <button class="addButton" (click) = "CreateTask()" [disabled]="!taskName" >Add</button>
     </div>
 
-    <div class="container">         
-        
-     <div class="item" *ngFor= "let item of task">
-        <div *ngIf= "!item.isedit; else elseBlock "> 
-        <span class="item_input"> {{item.name}} </span>
-           <button  class="editButton" (click)="EditTask(item)">Edit</button>
-           <button  class="removeButton" (click)="DeleteTask(item.id)">Remove</button>
-       </div>  
-    </div>
+<div class="container">         
     
-    </div>
+  <div class="item" *ngFor= "let item of task">
 
-    <ng-template #elseBlock>      
-        <div>      
-        <span class="item_input"> <input type="text" [(ngModel)] = "item.edittask"> </span>
+        <div *ngIf= "!item.isedit; else elseBlock "> 
+        <div class="item_input">
+            <span class="item-name"> {{item.name}} </span> 
+           <button  class="editButton" (click)="EditTask(item)">Edit</button>
+           <button  class="removeButton" (click)="DeleteTask(item.id)">Remove</button> 
+        </div>
+       </div>  
+    
+
+    <ng-template #elseBlock>              
+          <input class="item_input_edit" type="text" [(ngModel)] = "item.edittask">
           <button (click)="item.isedit = false" class="editButton">Cancel</button>
-          <button (click)= "UpdateTask(item)"  class="removeButton">Update</button>
-        </div>       
+          <button (click)= "UpdateTask(item)"  class="removeButton">Update</button>     
      </ng-template>
 
-
+  </div>
+    
+</div>
 
 
 
