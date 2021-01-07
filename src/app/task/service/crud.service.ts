@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -8,6 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class CrudService {
 
   constructor(public fireservices:AngularFirestore) { }
+
 
   create_Task(Record){
     return this.fireservices.collection('Tasks').add(Record);

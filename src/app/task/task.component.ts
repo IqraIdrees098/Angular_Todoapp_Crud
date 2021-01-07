@@ -1,36 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from './service/crud.service';
 
+
+interface tasktype{
+  name : any;
+}
+
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css'],
   providers: [CrudService]
 })
+
 export class TaskComponent implements OnInit {
 
   constructor(public crudservice:CrudService) { }
+
+ public data:tasktype[]=[];
+
 
   task:any;
   taskName: any;
   message:any;
 
 
-  ngOnInit() {
+  ngOnInit()  {
 
     this.crudservice.get_Alltask().subscribe( data => {
-      console.log(data);
-      this.task = data.map( e => {
-        let data:any = e.payload.doc.data();
+    // console.log(data);
+     this.task = data.map( e => {
+    //  let  data:any= e.payload.doc.data();
         return{
           id: e.payload.doc.id,
           isedit: false,
-          name: data.name,
+     //    name: data.name,
+          name: e.payload.doc.data()['name']
         };
       })
-      console.log(this.task);
-  })
-  
+      console.log(this.task)
+  }) 
+ 
   }
   
   CreateTask(){
